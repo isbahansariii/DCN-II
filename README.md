@@ -1,3 +1,20 @@
+# PROJECT NAME: Configuring a Small Enterprise Network
+# LABS TITLES:
+ - Networking using Router
+ - Topologies
+ - Static Routing
+ - Static Routing using CLI
+ - Dynamic Routing using CLI
+ - Dynamic Routing using RIP
+ - INSERTING PORT
+ - DHCP on Router
+ - DHCP on Server
+ - Subnetting
+ - Setting Password
+ - Smart Home Implementation
+ - Open Shortest Path First (OSPF)
+
+
 # Project Title: Configuring a Small Enterprise Network
 
 # Objective:
@@ -5,18 +22,18 @@ Design and configure a small enterprise network using Cisco Packet Tracer. The n
 
 # Requirements:
  # Network Layout:
-     + 3 departments (Sales, HR, IT) connected via a switch.
-     + Separate VLANs for each department.
-     + A router for inter-VLAN routing.
-     + DHCP configuration for automatic IP addressing.
-     + Implement a wireless network for guest access.
+    + 3 departments (Sales, HR, IT) connected via a switch.
+    + Separate VLANs for each department.
+    + A router for inter-VLAN routing.
+    + DHCP configuration for automatic IP addressing.
+    + Implement a wireless network for guest access.
  # Devices:
-    + PCs (4 per department)
-    + Switches (Layer 2)
-    + Router (Layer 3)
-    + Access Point (Wireless)
-    + DHCP Server
-    + DNS Server (optional)
+   + PCs (4 per department)
+   + Switches (Layer 2)
+   + Router (Layer 3)
+   + Access Point (Wireless)
+   + DHCP Server
+   + DNS Server (optional)
  # VLAN Configuration:
    + VLAN 10: Sales Department
    + VLAN 20: HR Department
