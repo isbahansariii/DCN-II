@@ -1,0 +1,100 @@
+SWITCH:
+en
+conf t
+vlan 10/20/30
+name SALES/HR/IT 
+ex
+
+int range fa0/2-24
+switchport mode access
+switchport access vlan 10/20/30
+exit
+
+int fa0/1
+switchport mode trunk
+exit 
+do wr
+
+
+MULTILAYER SWITCH:
+en
+conf t
+ 
+vlan 10
+name SALES
+exit 
+
+vlan 20
+name HR
+exit 
+
+vlan 30
+name IT
+exit
+
+int range gig1/0/1-4
+switchport mode trunk
+exit
+do wr
+
+
+ROUTER:
+en
+conf t
+int gig0/0
+no shut
+exit
+
+int gig0/0.10
+encapsulation dot1Q 10
+ip address 192.168.1.1 255.255.255.0
+exit
+
+int gig0/0.20
+encapsulation dot1Q 20
+ip address 192.168.2.1 255.255.255.0
+exit
+
+int gig0/0.30
+encapsulation dot1Q 30
+ip address 192.168.3.1 255.255.255.0
+exit
+
+service dhcp
+
+ip dhcp pool SALES-Pool
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+dns-server 192.168.1.1
+exit
+
+ip dhcp pool HR-Pool
+network 192.168.2.0 255.255.255.0
+default-router 192.168.2.1
+dns-server 192.168.2.1
+exit
+
+ip dhcp pool IT-Pool
+network 192.168.3.0 255.255.255.0
+default-router 192.168.3.1
+dns-server 192.168.3.1
+exit
+
+do wr 
+
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp excluded-address 192.168.2.1 192.168.2.10
+ip dhcp excluded-address 192.168.3.1 192.168.3.10
+do wr
+
+---ACLs----
+access-list 100 deny ip 192.168.2.0 0.0.0.255 192.168.3.0 0.0.0.255
+access-list 100 permit ip any any
+
+access-list 101 permit tcp 192.168.1.0 0.0.0.255 192.168.3.0 0.0.0.255 eq 80
+access-list 101 deny ip any any
+
+interface gigabitethernet 0/0.20
+ip access-group 100 in
+interface gigabitethernet 0/0.10
+ip access-group 101 in
